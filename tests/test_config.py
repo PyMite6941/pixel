@@ -15,8 +15,8 @@ class TestConfig:
         assert hasattr(Config, "RATE_LIMIT_COOLDOWN")
 
     def test_default_models(self):
-        assert Config.FAST_MODEL == "llama-3.1-8b-instant"
-        assert Config.SMART_MODEL == "llama-3.3-70b-versatile"
+        assert Config.FAST_MODEL == "openai/gpt-oss-20b"
+        assert Config.SMART_MODEL == "openai/gpt-oss-120b"
 
     def test_default_preferences(self):
         assert Config.PREFERRED_PROVIDER in ("groq", "ollama", "gemini", "claude")

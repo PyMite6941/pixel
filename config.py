@@ -143,10 +143,12 @@ class Config:
     ANTHROPIC_API_KEY = _get_secret("ANTHROPIC_API_KEY")
     GOOGLE_API_KEY = _get_secret("GOOGLE_API_KEY")
 
-    FAST_MODEL = os.getenv("FAST_MODEL") or _SECRETS.get("FAST_MODEL", "llama-3.1-8b-instant")
-    SMART_MODEL = os.getenv("SMART_MODEL") or _SECRETS.get("SMART_MODEL", "llama-3.3-70b-versatile")
+    # Groq deprecated llama-3.1-8b-instant and llama-3.3-70b-versatile (announced 2026-06-17).
+    # Default to the GA gpt-oss models; override via env/secrets if needed.
+    FAST_MODEL = os.getenv("FAST_MODEL") or _SECRETS.get("FAST_MODEL", "openai/gpt-oss-20b")
+    SMART_MODEL = os.getenv("SMART_MODEL") or _SECRETS.get("SMART_MODEL", "openai/gpt-oss-120b")
     CLAUDE_MODEL = os.getenv("CLAUDE_MODEL") or _SECRETS.get("CLAUDE_MODEL", "claude-sonnet-4-6")
-    GEMINI_MODEL = os.getenv("GEMINI_MODEL") or _SECRETS.get("GEMINI_MODEL", "gemini-1.5-flash")
+    GEMINI_MODEL = os.getenv("GEMINI_MODEL") or _SECRETS.get("GEMINI_MODEL", "gemini-2.0-flash")
     OLLAMA_MODEL = os.getenv("OLLAMA_MODEL") or _SECRETS.get("OLLAMA_MODEL", "llama3.2")
 
     _has_cloud = bool(GROQ_API_KEY or ANTHROPIC_API_KEY or GOOGLE_API_KEY)
