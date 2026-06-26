@@ -1,9 +1,57 @@
+# Pixel AI — Environment / Secrets
 .env
+secrets.toml
+*.key
+*.pem
+
+# Python bytecode / caches
 __pycache__/
 *.pyc
-.vscode/
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
 .venv/
+*.egg-info/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs
 *.log
 cache/
-.pytest_cache/
+
+# --- PixelCode AI — private training & data ---
+training/
+evals/
+models/
+self/
+brain/
 memory/
+tui/
+ui/node_modules/
+ui/dist/
+
+# Generated runtime data
+service/data/
+codes/data/
+engine/data/
+
+# Web UI SPA (separate frontend app)
+ui/
+
+# Legacy launcher scripts (PixelCode AI branding)
+PixelCode.bat
+launcher.ps1
+start_ui.ps1
+cleanup.py
+
+# Personal notes
+ideas.md
+
+# Store frontend (separate deploy)
+web-store/node_modules/
+web-store/.wrangler/

@@ -1,0 +1,130 @@
+[
+  {
+    "task": "test task",
+    "task_category": "general",
+    "steps": [
+      {
+        "tool": "search",
+        "action": "search",
+        "status": "done"
+      }
+    ],
+    "success": true,
+    "duration": 1.5,
+    "timestamp": 1782434998.5524092
+  },
+  {
+    "task": "test task",
+    "task_category": "general",
+    "steps": [
+      {
+        "tool": "search",
+        "action": "search",
+        "status": "done"
+      },
+      {
+        "tool": "think",
+        "action": "think",
+        "status": "done"
+      }
+    ],
+    "success": true,
+    "duration": 2.5,
+    "timestamp": 1782435607.0312912
+  },
+  {
+    "task": "write code in python",
+    "task_category": "coding",
+    "steps": [
+      {
+        "tool": "run_code",
+        "action": "code",
+        "status": "done"
+      },
+      {
+        "tool": "file_ops",
+        "action": "file",
+        "status": "done"
+      }
+    ],
+    "success": true,
+    "duration": 1.0,
+    "timestamp": 1782435607.0493052
+  },
+  {
+    "task": "test task",
+    "task_category": "general",
+    "steps": [
+      {
+        "tool": "search",
+        "action": "search",
+        "status": "done"
+      },
+      {
+        "tool": "think",
+        "action": "think",
+        "status": "done"
+      }
+    ],
+    "success": true,
+    "duration": 2.5,
+    "timestamp": 1782435655.0729809
+  },
+  {
+    "task": "write code in python",
+    "task_category": "coding",
+    "steps": [
+      {
+        "tool": "run_code",
+        "action": "code",
+        "status": "done"
+      },
+      {
+        "tool": "file_ops",
+        "action": "file",
+        "status": "done"
+      }
+    ],
+    "success": true,
+    "duration": 1.0,
+    "timestamp": 1782435655.0909295
+  },
+  {
+    "task": "test task",
+    "task_category": "general",
+    "steps": [
+      {
+        "tool": "search",
+        "action": "search",
+        "status": "done"
+      },
+      {
+        "tool": "think",
+        "action": "think",
+        "status": "done"
+      }
+    ],
+    "success": true,
+    "duration": 2.5,
+    "timestamp": 1782435750.3298104
+  },
+  {
+    "task": "write code in python",
+    "task_category": "coding",
+    "steps": [
+      {
+        "tool": "run_code",
+        "action": "code",
+        "status": "done"
+      },
+      {
+        "tool": "file_ops",
+        "action": "file",
+        "status": "done"
+      }
+    ],
+    "success": true,
+    "duration": 1.0,
+    "timestamp": 1782435750.3432145
+  }
+]

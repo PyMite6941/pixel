@@ -1,0 +1,280 @@
+{
+  "browser": {
+    "summary": "Open URLs in the default web browser, or search the web",
+    "capabilities": [
+      "Open URLs in the default web browser, or search the web"
+    ],
+    "use_cases": [
+      "Use browser when you need to open urls in the default web browser, or search the web"
+    ],
+    "when_to_use": "When the task involves open urls in the default web browser, or search the web",
+    "when_not_to_use": "",
+    "required_params": {
+      "action": "<class 'str'>",
+      "url": "<class 'str'>",
+      "query": "<class 'str'>"
+    },
+    "similar_tools": [],
+    "chaining": {
+      "before": [],
+      "after": []
+    },
+    "keywords": "browser, Open URLs in the default web browser, or search the web"
+  },
+  "clipboard": {
+    "summary": "Read or write the system clipboard",
+    "capabilities": [
+      "Read or write the system clipboard"
+    ],
+    "use_cases": [
+      "Use clipboard when you need to read or write the system clipboard"
+    ],
+    "when_to_use": "When the task involves read or write the system clipboard",
+    "when_not_to_use": "",
+    "required_params": {
+      "action": "<class 'str'>",
+      "text": "str | None"
+    },
+    "similar_tools": [],
+    "chaining": {
+      "before": [],
+      "after": []
+    },
+    "keywords": "clipboard, Read or write the system clipboard"
+  },
+  "file_ops": {
+    "summary": "Read, write, list, copy, move, delete files anywhere on the filesystem (with safety checks)",
+    "capabilities": [
+      "Read, write, list, copy, move, delete files anywhere on the filesystem (with safety checks)"
+    ],
+    "use_cases": [
+      "Use file_ops when you need to read, write, list, copy, move, delete files anywhere on the filesystem (with safety checks)"
+    ],
+    "when_to_use": "When the task involves read, write, list, copy, move, delete files anywhere on the filesystem (with safety checks)",
+    "when_not_to_use": "",
+    "required_params": {
+      "action": "<class 'str'>",
+      "path": "<class 'str'>",
+      "content": "str | None",
+      "new_path": "str | None",
+      "pattern": "<class 'str'>"
+    },
+    "similar_tools": [],
+    "chaining": {
+      "before": [],
+      "after": []
+    },
+    "keywords": "file_ops, Read, write, list, copy, move, delete files anywhere on the filesystem (with safety checks)"
+  },
+  "network": {
+    "summary": "Report network info: IP addresses, connectivity, DNS, ports",
+    "capabilities": [
+      "Report network info: IP addresses, connectivity, DNS, ports"
+    ],
+    "use_cases": [
+      "Use network when you need to report network info: ip addresses, connectivity, dns, ports"
+    ],
+    "when_to_use": "When the task involves report network info: ip addresses, connectivity, dns, ports",
+    "when_not_to_use": "",
+    "required_params": {
+      "action": "<class 'str'>",
+      "target": "<class 'str'>",
+      "port": "int | None"
+    },
+    "similar_tools": [],
+    "chaining": {
+      "before": [],
+      "after": []
+    },
+    "keywords": "network, Report network info: IP addresses, connectivity, DNS, ports"
+  },
+  "process": {
+    "summary": "List, kill, or start processes on the system",
+    "capabilities": [
+      "List, kill, or start processes on the system"
+    ],
+    "use_cases": [
+      "Use process when you need to list, kill, or start processes on the system"
+    ],
+    "when_to_use": "When the task involves list, kill, or start processes on the system",
+    "when_not_to_use": "",
+    "required_params": {
+      "action": "<class 'str'>",
+      "name": "str | None",
+      "pid": "int | None",
+      "command": "str | None"
+    },
+    "similar_tools": [],
+    "chaining": {
+      "before": [],
+      "after": []
+    },
+    "keywords": "process, List, kill, or start processes on the system"
+  },
+  "run_code": {
+    "summary": "Execute Python code in a subprocess with a 5-second timeout",
+    "capabilities": [
+      "Execute Python code in a subprocess with a 5-second timeout"
+    ],
+    "use_cases": [
+      "Use run_code when you need to execute python code in a subprocess with a 5-second timeout"
+    ],
+    "when_to_use": "When the task involves execute python code in a subprocess with a 5-second timeout",
+    "when_not_to_use": "",
+    "required_params": {
+      "code": "<class 'str'>",
+      "language": "<class 'str'>"
+    },
+    "similar_tools": [],
+    "chaining": {
+      "before": [],
+      "after": []
+    },
+    "keywords": "run_code, Execute Python code in a subprocess with a 5-second timeout"
+  },
+  "screenshot": {
+    "summary": "Capture the screen or a specific window to a file",
+    "capabilities": [
+      "Capture the screen or a specific window to a file"
+    ],
+    "use_cases": [
+      "Use screenshot when you need to capture the screen or a specific window to a file"
+    ],
+    "when_to_use": "When the task involves capture the screen or a specific window to a file",
+    "when_not_to_use": "",
+    "required_params": {
+      "action": "<class 'str'>",
+      "window": "str | None",
+      "output": "str | None"
+    },
+    "similar_tools": [],
+    "chaining": {
+      "before": [],
+      "after": []
+    },
+    "keywords": "screenshot, Capture the screen or a specific window to a file"
+  },
+  "search": {
+    "summary": "Search the web using Google, Bing, or DuckDuckGo",
+    "capabilities": [
+      "Search the web using Google, Bing, or DuckDuckGo"
+    ],
+    "use_cases": [
+      "Use search when you need to search the web using google, bing, or duckduckgo"
+    ],
+    "when_to_use": "When the task involves search the web using google, bing, or duckduckgo",
+    "when_not_to_use": "",
+    "required_params": {
+      "query": "<class 'str'>",
+      "engine": "str | None"
+    },
+    "similar_tools": [],
+    "chaining": {
+      "before": [],
+      "after": []
+    },
+    "keywords": "search, Search the web using Google, Bing, or DuckDuckGo"
+  },
+  "shell": {
+    "summary": "Run shell commands (PowerShell, cmd, or Python) with output capture and timeout",
+    "capabilities": [
+      "Run shell commands (PowerShell, cmd, or Python) with output capture and timeout"
+    ],
+    "use_cases": [
+      "Use shell when you need to run shell commands (powershell, cmd, or python) with output capture and timeout"
+    ],
+    "when_to_use": "When the task involves run shell commands (powershell, cmd, or python) with output capture and timeout",
+    "when_not_to_use": "",
+    "required_params": {
+      "command": "<class 'str'>",
+      "shell_type": "<class 'str'>",
+      "timeout": "<class 'int'>"
+    },
+    "similar_tools": [],
+    "chaining": {
+      "before": [],
+      "after": []
+    },
+    "keywords": "shell, Run shell commands (PowerShell, cmd, or Python) with output capture and timeout"
+  },
+  "system_info": {
+    "summary": "Report OS, Python version, disk space, and environment details",
+    "capabilities": [
+      "Report OS, Python version, disk space, and environment details"
+    ],
+    "use_cases": [
+      "Use system_info when you need to report os, python version, disk space, and environment details"
+    ],
+    "when_to_use": "When the task involves report os, python version, disk space, and environment details",
+    "when_not_to_use": "",
+    "required_params": {},
+    "similar_tools": [],
+    "chaining": {
+      "before": [],
+      "after": []
+    },
+    "keywords": "system_info, Report OS, Python version, disk space, and environment details"
+  },
+  "think": {
+    "summary": "Break down a complex task into structured reasoning steps",
+    "capabilities": [
+      "Break down a complex task into structured reasoning steps"
+    ],
+    "use_cases": [
+      "Use think when you need to break down a complex task into structured reasoning steps"
+    ],
+    "when_to_use": "When the task involves break down a complex task into structured reasoning steps",
+    "when_not_to_use": "",
+    "required_params": {
+      "task": "<class 'str'>"
+    },
+    "similar_tools": [],
+    "chaining": {
+      "before": [],
+      "after": []
+    },
+    "keywords": "think, Break down a complex task into structured reasoning steps"
+  },
+  "validator": {
+    "summary": "Validate Python syntax, check for common issues, and lint code",
+    "capabilities": [
+      "Validate Python syntax, check for common issues, and lint code"
+    ],
+    "use_cases": [
+      "Use validator when you need to validate python syntax, check for common issues, and lint code"
+    ],
+    "when_to_use": "When the task involves validate python syntax, check for common issues, and lint code",
+    "when_not_to_use": "",
+    "required_params": {
+      "code": "<class 'str'>",
+      "check": "<class 'str'>"
+    },
+    "similar_tools": [],
+    "chaining": {
+      "before": [],
+      "after": []
+    },
+    "keywords": "validator, Validate Python syntax, check for common issues, and lint code"
+  },
+  "web_fetch": {
+    "summary": "Fetch a URL and return its content as text (HTML stripped)",
+    "capabilities": [
+      "Fetch a URL and return its content as text (HTML stripped)"
+    ],
+    "use_cases": [
+      "Use web_fetch when you need to fetch a url and return its content as text (html stripped)"
+    ],
+    "when_to_use": "When the task involves fetch a url and return its content as text (html stripped)",
+    "when_not_to_use": "",
+    "required_params": {
+      "url": "<class 'str'>",
+      "timeout": "<class 'int'>"
+    },
+    "similar_tools": [],
+    "chaining": {
+      "before": [],
+      "after": []
+    },
+    "keywords": "web_fetch, Fetch a URL and return its content as text (HTML stripped)"
+  }
+}

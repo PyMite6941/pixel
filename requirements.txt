@@ -3,3 +3,14 @@ google-genai
 groq
 requests
 python-dotenv
+rich
+textual
+fastapi
+uvicorn
+llama-cpp-python
+python-jose
+slowapi
+resend
+google-cloud-firestore
+requests
+

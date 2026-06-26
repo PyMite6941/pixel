@@ -1,0 +1,100 @@
+# Pixel AI — GCP IAM & Resource Configuration
+# Apply with: gcloud deployment-manager deployments create pixel-config --config=gcp_config.yaml
+# Secure defaults: VPC, no unauthenticated access, service account
+
+resources:
+  # Secret for secrets.toml
+  - name: secrets-toml
+    type: gcp-types/secretmanager-v1:projects.secrets
+    properties:
+      secret:
+        replication:
+          automatic: {}
+      secretId: secrets-toml
+
+  # JWT signing secret
+  - name: pixel-jwt-secret
+    type: gcp-types/secretmanager-v1:projects.secrets
+    properties:
+      secret:
+        replication:
+          automatic: {}
+      secretId: pixel-jwt-secret
+
+  # Issue secret for store worker
+  - name: pixel-issue-secret
+    type: gcp-types/secretmanager-v1:projects.secrets
+    properties:
+      secret:
+        replication:
+          automatic: {}
+      secretId: pixel-issue-secret
+
+  # Cloud Run service (no unauthenticated access)
+  - name: pixel
+    type: gcp-types/run-v1:projects.locations.services
+    properties:
+      location: us-central1
+      parent: projects/$(ref.a-baseline.project)
+      metadata:
+        annotations:
+          run.googleapis.com/ingress: internal-and-cloud-load-balancing
+          autoscaling.knative.dev/maxScale: "10"
+          autoscaling.knative.dev/minScale: "0"
+          run.googleapis.com/vpc-access-connector: pixel-vpc-connector
+          run.googleapis.com/vpc-access-egress: all-traffic
+      spec:
+        template:
+          metadata:
+            annotations:
+              autoscaling.knative.dev/maxScale: "10"
+              run.googleapis.com/execution-environment: gen2
+          spec:
+            containerConcurrency: 80
+            timeoutSeconds: 300
+            serviceAccountName: pixel-sa@$(ref.a-baseline.project).iam.gserviceaccount.com
+            containers:
+              - image: us-central1-docker.pkg.dev/$(ref.a-baseline.project)/pixel/pixel:latest
+                env:
+                  - name: LOG_LEVEL
+                    value: "INFO"
+                resources:
+                  limits:
+                    memory: 4Gi
+                    cpu: "2"
+                ports:
+                  - containerPort: 8642
+                volumeMounts:
+                  - name: secrets
+                    mountPath: /secrets
+                startupProbe:
+                  httpGet:
+                    path: /api/license/health
+                    port: 8642
+                  initialDelaySeconds: 10
+                  periodSeconds: 15
+                livenessProbe:
+                  httpGet:
+                    path: /api/license/health
+                    port: 8642
+                  initialDelaySeconds: 30
+                  periodSeconds: 30
+            volumes:
+              - name: secrets
+                secret:
+                  secretName: secrets-toml
+                    items:
+                      - key: latest
+                        path: secrets.toml
+
+  # IAM: Only store invoker service account can call (no allUsers)
+  - name: pixel-invoker
+    type: gcp-types/run-v1:projects.locations.services.setIamPolicy
+    properties:
+      service: pixel
+      location: us-central1
+      policy:
+        bindings:
+          - role: roles/run.invoker
+            members:
+              - serviceAccount:pixel-store-invoker@$(ref.a-baseline.project).iam.gserviceaccount.com

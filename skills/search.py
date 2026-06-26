@@ -2,8 +2,11 @@ import os
 import re
 import urllib.parse
 from html.parser import HTMLParser
+from typing import Any
 
 import requests
+
+from skills.base_skill import BaseSkill
 
 
 class _HTMLToText(HTMLParser):
@@ -37,29 +40,42 @@ def _extract_text(html: str) -> str:
     return ".\n".join(lines[:20])
 
 
-class Search:
-    def __init__(self, query: str, search_engine: str = None):
-        self.query = query
-        engine = (search_engine or os.getenv("SEARCH_ENGINE", "duckduckgo")).lower()
-        self._method = {
+class Search(BaseSkill):
+    @property
+    def name(self) -> str:
+        return "search"
+
+    @property
+    def description(self) -> str:
+        return "Search the web using Google, Bing, or DuckDuckGo"
+
+    @property
+    def auto_triggers(self) -> list[str]:
+        return ["search for", "search the web", "look up", "find online", "google", "what is", "who is", "tell me about"]
+
+    @property
+    def requires_subprocess(self) -> bool:
+        return True
+
+    def execute(self, query: str, engine: str | None = None, **kwargs: Any) -> str:
+        engine = engine or os.getenv("SEARCH_ENGINE", "duckduckgo")
+        method = {
             "google": self._google,
             "bing": self._bing,
-        }.get(engine, self._duckduckgo)
+        }.get(engine.lower(), self._duckduckgo)
+        return method(query)
 
-    def run(self) -> str:
-        return self._method()
-
-    def _google(self) -> str:
-        url = f"https://www.google.com/search?q={urllib.parse.quote(self.query)}"
+    def _google(self, query: str) -> str:
+        url = f"https://www.google.com/search?q={urllib.parse.quote(query)}"
         resp = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=10)
         return _extract_text(resp.text)
 
-    def _bing(self) -> str:
-        url = f"https://www.bing.com/search?q={urllib.parse.quote(self.query)}"
+    def _bing(self, query: str) -> str:
+        url = f"https://www.bing.com/search?q={urllib.parse.quote(query)}"
         resp = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=10)
         return _extract_text(resp.text)
 
-    def _duckduckgo(self) -> str:
-        url = f"https://duckduckgo.com/html/?q={urllib.parse.quote(self.query)}"
+    def _duckduckgo(self, query: str) -> str:
+        url = f"https://duckduckgo.com/html/?q={urllib.parse.quote(query)}"
         resp = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=10)
         return _extract_text(resp.text)

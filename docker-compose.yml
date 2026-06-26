@@ -1,0 +1,63 @@
+version: "3.9"
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: pixel-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    environment:
+      - OLLAMA_KEEP_ALIVE=24h
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434/api/tags"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  pixel:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: local-ai
+    container_name: pixel
+    ports:
+      - "8642:8642"
+    volumes:
+      - ./memory:/app/memory
+      - ollama_data:/root/.ollama:ro
+    environment:
+      - LOG_LEVEL=INFO
+      - OLLAMA_HOST=ollama
+      - OLLAMA_PORT=11434
+      - OLLAMA_MODEL=llama3.2
+    depends_on:
+      ollama:
+        condition: service_healthy
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+
+  pixel-standalone:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: local-ai
+    container_name: pixel-standalone
+    ports:
+      - "8642:8642"
+      - "11434:11434"
+    volumes:
+      - ./memory:/app/memory
+      - ollama_data:/root/.ollama
+    environment:
+      - LOG_LEVEL=INFO
+      - OLLAMA_MODEL=llama3.2
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+
+volumes:
+  ollama_data:

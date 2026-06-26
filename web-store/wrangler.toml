@@ -1,0 +1,12 @@
+name = "pixel-store"
+compatibility_date = "2025-12-01"
+pages_build_output_dir = "./public"
+
+[[services]]
+binding = "PIXEL_AI"
+service = "pixel-ai-store-backend"
+
+[[d1_databases]]
+binding = "STORE_DB"
+database_name = "pixel-store"
+database_id = "your-database-id"
